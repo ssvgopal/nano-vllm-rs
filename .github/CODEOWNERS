@@ -1,0 +1,13 @@
+# Default reviewers for the entire repository
+*   @ssvgopal
+
+# Specific reviewers for certain paths
+/src/engine/     @ssvgopal
+/src/models/    @ssvgopal
+/src/utils/     @ssvgopal
+/tests/         @ssvgopal
+
+# Documentation
+/docs/          @ssvgopal
+README.md       @ssvgopal
+CONTRIBUTING.md @ssvgopal

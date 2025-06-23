@@ -1,0 +1,132 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+env:
+  CARGO_TERM_COLOR: always
+  RUSTFLAGS: -D warnings
+  RUST_BACKTRACE: 1
+
+jobs:
+  test:
+    name: Test Suite
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        rust: [stable, nightly]
+        include:
+          - os: ubuntu-latest
+            cache-key: linux
+          - os: windows-latest
+            cache-key: windows
+          - os: macos-latest
+            cache-key: macos
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Install Rust (${{ matrix.rust }})
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: ${{ matrix.rust }}
+        profile: minimal
+        override: true
+        components: rustfmt, clippy
+    
+    - name: Cache cargo registry
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.cargo/registry
+          ~/.cargo/git
+          target
+        key: ${{ matrix.cache-key }}-${{ matrix.rust }}-${{ hashFiles('**/Cargo.lock') }}
+        restore-keys: |
+          ${{ matrix.cache-key }}-${{ matrix.rust }}-
+    
+    - name: Check Rust Version
+      run: rustc --version
+    
+    - name: Check Cargo Version
+      run: cargo --version
+    
+    - name: Check Formatting
+      if: matrix.rust == 'stable'
+      run: cargo fmt --all -- --check
+    
+    - name: Lint with Clippy
+      if: matrix.rust == 'stable'
+      run: cargo clippy --all-targets --all-features -- -D warnings
+    
+    - name: Build
+      run: cargo build --all-features
+    
+    - name: Run Tests
+      run: cargo test --all-features
+    
+    - name: Run Documentation Tests
+      run: cargo test --doc
+    
+    - name: Build Documentation
+      run: cargo doc --no-deps --document-private-items
+
+  # Additional job for code coverage
+  coverage:
+    name: Code Coverage
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Install Rust
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        profile: minimal
+        override: true
+        components: rustfmt, clippy, llvm-tools-preview
+    
+    - name: Install cargo-tarpaulin
+      uses: actions-rs/install@v0.1
+      with:
+        crate: cargo-tarpaulin
+        version: '0.26.0'
+        use-tool-cache: true
+    
+    - name: Run Test Coverage
+      run: cargo tarpaulin --out Xml --output-dir target/coverage
+      
+    - name: Upload Coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./target/coverage/cobertura.xml
+        fail_ci_if_error: false
+
+  # Additional job for security audit
+  audit:
+    name: Security Audit
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Install Rust
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        profile: minimal
+        override: true
+    
+    - name: Install cargo-audit
+      uses: actions-rs/install@v0.1
+      with:
+        crate: cargo-audit
+        version: '0.17.5'
+        use-tool-cache: true
+    
+    - name: Run Security Audit
+      run: cargo audit --deny warnings

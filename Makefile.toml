@@ -1,0 +1,135 @@
+[tasks.default]
+description = "Run tests with all features"
+command = "cargo"
+args = ["test", "--all-features"]
+
+[tasks.check]
+description = "Check the code for errors"
+command = "cargo"
+args = ["check", "--all-targets", "--all-features"]
+
+[tasks.fmt]
+description = "Format the code"
+command = "cargo"
+args = ["fmt", "--all"]
+
+[tasks.lint]
+description = "Run clippy lints"
+command = "cargo"
+args = ["clippy", "--all-targets", "--all-features", "--", "-D", "warnings"]
+
+[tasks.audit]
+description = "Run security audit"
+command = "cargo"
+args = ["audit", "--deny", "warnings"]
+
+[tasks.deny]
+description = "Check for denied dependencies"
+command = "cargo"
+args = ["deny", "check"]
+
+[tasks.test]
+description = "Run tests"
+command = "cargo"
+args = ["test", "--all-features"]
+
+[tasks.test-nocapture]
+description = "Run tests with output"
+command = "cargo"
+args = ["test", "--all-features", "--", "--nocapture"]
+
+[tasks.coverage]
+description = "Generate test coverage report"
+command = "cargo"
+args = ["tarpaulin", "--out", "Html", "--output-dir", "target/coverage"]
+
+[tasks.doc]
+description = "Build documentation"
+command = "cargo"
+args = ["doc", "--no-deps", "--document-private-items"]
+
+[tasks.clean]
+description = "Clean build artifacts"
+command = "cargo"
+args = ["clean"]
+
+[tasks.build]
+description = "Build in release mode"
+command = "cargo"
+args = ["build", "--release"]
+
+[tasks.bench]
+description = "Run benchmarks"
+command = "cargo"
+args = ["bench", "--all-features"]
+
+[tasks.update]
+description = "Update dependencies"
+command = "cargo"
+args = ["update"]
+
+[tasks.ci]
+description = "Run CI checks"
+dependencies = ["check", "fmt", "lint", "test", "audit", "deny"]
+
+[tasks.pre-commit]
+description = "Run pre-commit checks"
+dependencies = ["fmt", "lint", "test"]
+
+[tasks.pre-push]
+description = "Run pre-push checks"
+dependencies = ["check", "fmt", "lint", "test", "audit"]
+
+# Development tasks
+[tasks.dev]
+description = "Run development server"
+command = "cargo"
+args = ["run", "--release", "--bin", "nano-vllm-rs"]
+
+[tasks.watch]
+description = "Watch for changes and run tests"
+command = "cargo"
+args = ["watch", "-x", "test --all-features"]
+
+# Documentation tasks
+[tasks.docs]
+description = "Build and open documentation"
+dependencies = ["doc"]
+command = "cargo"
+args = ["doc", "--open", "--no-deps"]
+
+# Release tasks
+[tasks.release]
+description = "Create a new release"
+command = "cargo"
+args = ["release"]
+
+# Code quality tasks
+[tasks.quality]
+description = "Run all code quality checks"
+dependencies = ["fmt", "lint", "test", "audit", "deny"]
+
+# Dependency management
+[tasks.deps]
+description = "Check for unused and outdated dependencies"
+dependencies = ["update", "audit"]
+
+# Setup tasks
+[tasks.setup]
+description = "Setup development environment"
+script = """
+# Install Rust if not installed
+if ! command -v rustup &> /dev/null; then
+    echo "Installing Rust..."
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+    source $HOME/.cargo/env
+fi
+
+# Install required components
+rustup component add rustfmt clippy
+
+# Install cargo plugins
+cargo install cargo-audit cargo-tarpaulin cargo-deny cargo-watch
+
+echo "Development environment setup complete!"
+"""

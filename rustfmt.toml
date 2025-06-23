@@ -1,0 +1,144 @@
+# Rustfmt configuration for the project
+
+# Maximum width of each line
+error_on_line_overflow = true
+max_width = 100
+
+# Use tab characters for indentation (false means spaces)
+use_try_shorthand = true
+
+# Maximum number of blank lines which can be kept in the same module or block
+blank_lines_upper_bound = 1
+
+# Maximum number of blank lines which can be kept between items
+blank_lines_lower_bound = 0
+
+# Maximum width of a single-line if-else expression
+# Small values make code more readable
+single_line_if_else_max_width = 50
+
+# Maximum number of items in array/tuple/struct/variant to be formatted on a single line
+array_width = 60
+
+# Maximum number of fields in a struct literal to be formatted on a single line
+struct_lit_width = 16
+
+# Maximum number of fields in a struct variant to be formatted on a single line
+struct_variant_width = 16
+
+# Maximum number of fields in a tuple struct or variant to be formatted on a single line
+tuple_struct_width = 16
+
+# Maximum number of fields in a tuple to be formatted on a single line
+tuple_width = 16
+
+# Maximum width of the args of a function call before falling back to vertical formatting
+fn_call_width = 60
+
+# Maximum width of the args of a function before falling back to vertical formatting
+fn_args_paren_newline = true
+
+# Maximum width of a single-line function signature
+fn_single_line = false
+
+# Maximum width of a single-line match arm
+match_arm_leading_pipes = "Never"
+
+# Maximum width of a single-line match expression
+match_arm_blocks = false
+
+# Controls the way struct literals are wrapped
+wrap_comments = true
+
+# Maximum line length for comments
+comment_width = 100
+
+# Format code in markdown files
+format_macro_matchers = true
+
+# Format code in doc comments
+format_code_in_doc_comments = true
+
+# Format string literals where necessary
+format_strings = true
+
+# Format string literals where necessary
+format_strings_padding = 0
+
+# Format string literals where necessary
+format_strings_indent = 4
+
+# Use the new pretty-printing algorithm for chains
+use_small_heuristics = "Max"
+
+# Maximum number of width to be used for the small heuristics
+max_heuristic_width = 100
+
+# Maximum number of width to be used for the small heuristics
+max_heuristic_width = 100
+
+# Maximum number of width to be used for the small heuristics
+max_heuristic_width = 100
+
+# Put imports on the same line for types that use the same path
+imports_granularity = "Crate"
+
+# Group imports by the module level
+group_imports = "StdExternalCrate"
+
+# Reorder imports and exports alphabetically in a group
+reorder_imports = true
+
+# Reorder modules in a use statement
+reorder_modules = true
+
+# Remove trailing commas in match arms
+remove_nested_parens = true
+
+# Remove trailing semicolons if the type is `()`
+remove_nested_parens = true
+
+# Use field initialization shorthand if possible
+use_field_init_shorthand = true
+
+# Use try shorthand (?) where possible
+use_try_shorthand = true
+
+# Use the new pretty-printing algorithm for chains
+use_small_heuristics = "Max"
+
+# Maximum width of the args of a function call before falling back to vertical formatting
+fn_call_width = 60
+
+# Maximum width of the args of a function before falling back to vertical formatting
+fn_args_paren_newline = true
+
+# Maximum width of a single-line function signature
+fn_single_line = false
+
+# Maximum width of a single-line match arm
+match_arm_leading_pipes = "Never"
+
+# Maximum width of a single-line match expression
+match_arm_blocks = false
+
+# Controls the way struct literals are wrapped
+wrap_comments = true
+
+# Maximum line length for comments
+comment_width = 100
+
+# Format code in markdown files
+format_macro_matchers = true
+
+# Format code in doc comments
+format_code_in_doc_comments = true
+
+# Format string literals where necessary
+format_strings = true
+
+# Format string literals where necessary
+format_strings_padding = 0
+
+# Format string literals where necessary
+format_strings_indent = 4

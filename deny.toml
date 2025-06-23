@@ -1,0 +1,78 @@
+# Configuration for cargo-deny
+# See: https://embarkstudios.github.io/cargo-deny/
+
+[licenses]
+# The lint level for licenses
+unlicensed = "deny"
+# Default license lint level
+default = "deny"
+copyleft = "deny"
+# Allow these licenses
+allow = [
+    "MIT",
+    "Apache-2.0",
+    "Apache-2.0 WITH LLVM-exception",
+    "BSD-2-Clause",
+    "BSD-3-Clause",
+    "ISC",
+    "Unlicense",
+    "Zlib",
+    "NCSA",
+    "OpenSSL",
+    "CC0-1.0",
+]
+# Explicitly allow these crates
+allow-osi-fsf-free = "all"
+
+[licenses.private]
+# Don't require documentation or licenses for dependencies that are only used for tests/examples
+ignore = true
+
+[bans]
+# Check for multiple versions of the same crate
+multiple-versions = "deny"
+# Check for multiple versions in the entire dependency graph
+wildcards = "deny"
+# Allow only one version of a crate in the entire dependency graph
+denylist = []
+
+[advisories]
+# Check for security vulnerabilities
+vulnerability = "deny"
+# Check for unmaintained crates
+unmaintained = "warn"
+# Check for crates with broken documentation URLs
+notice = "warn"
+# Check for crates with security notices
+unmaintained = "warn"
+# Ignore advisories for these crates
+ignore = []
+
+[advisories.db-path] = "~/.cargo/advisory-db"
+[advisories.db-urls] = ["https://github.com/rustsec/advisory-db"]
+
+[sources]
+# Allow crates from crates.io
+crates-io = true
+# Don't allow crates from git repositories
+git = []
+# Don't allow crates from local paths
+local-registry = []
+
+[source.allow-git]
+# Allow specific git repositories if needed
+# name = ["https://github.com/user/repo"]
+
+[source.allow-registry]
+# Allow specific registries if needed
+# crates-io = true
+
+[source.skip]
+# Skip specific crates from being checked
+# name = ["crate1", "crate2"]
+
+[metadata]
+# Additional metadata for the project
+maintainers = ["@ssvgopal"]
+changelog = "CHANGELOG.md"
+repository = "https://github.com/ssvgopal/nano-vllm-rs"
