@@ -1,0 +1,42 @@
+version: 2
+updates:
+  # Enable version updates for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    # Assign PRs to the default assignee
+    assignees:
+      - "@ssvgopal"
+    # Add labels to the created PRs
+    labels:
+      - "dependencies"
+      - "github-actions"
+
+  # Enable version updates for Cargo
+  - package-ecosystem: "cargo"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    assignees:
+      - "@ssvgopal"
+    labels:
+      - "dependencies"
+      - "rust"
+    # Only allow updates to the patch version
+    versioning-strategy: "increase-if-necessary"
+    # Ignore pre-release versions
+    ignore:
+      - dependency-name: "*"
+        versions: ["*-alpha.*", "*-beta.*", "*-rc.*"]
+
+  # Enable version updates for npm (for any frontend code)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    assignees:
+      - "@ssvgopal"
+    labels:
+      - "dependencies"
+      - "javascript"

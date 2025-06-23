@@ -1,0 +1,25 @@
+name: Branch Protection
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  check-branch-protection:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check branch protection
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const { data: branch } = await github.rest.repos.getBranch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              branch: 'main',
+            })
+            
+            if (!branch.protected) {
+              core.setFailed('The main branch is not protected. Please enable branch protection.')
+            }
