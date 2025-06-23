@@ -1,0 +1,70 @@
+[package]
+name = "nano-vllm-rs"
+version = "0.1.0"
+edition = "2021"
+authors = ["Sai Sunkara"]
+description = "A lightweight vLLM implementation in Rust"
+license = "MIT"
+repository = "https://github.com/your-username/nano-vllm-rs"
+
+[dependencies]
+# Core tensor operations
+candle-core = "0.8"
+candle-nn = "0.8"
+candle-transformers = "0.8"
+
+# GPU support
+candle-cuda = { version = "0.8", optional = true }
+cudarc = { version = "0.12", optional = true }
+
+# Model and tokenization
+tokenizers = "0.20"
+safetensors = "0.4"
+hf-hub = "0.3"
+
+# Async and concurrency
+tokio = { version = "1.0", features = ["full"] }
+rayon = "1.10"
+crossbeam = "0.8"
+parking_lot = "0.12"
+dashmap = "6.0"
+
+# Utilities
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+anyhow = "1.0"
+thiserror = "1.0"
+tracing = "0.1"
+tracing-subscriber = "0.3"
+xxhash-rust = { version = "0.8", features = ["xxh64"] }
+
+# CLI and configuration
+clap = { version = "4.0", features = ["derive"] }
+config = "0.14"
+
+# Development dependencies
+[dev-dependencies]
+criterion = "0.5"
+tempfile = "3.0"
+approx = "0.5"
+
+[features]
+default = ["cuda"]
+cuda = ["candle-cuda", "cudarc"]
+metal = ["candle-metal"]
+
+[[bench]]
+name = "inference_benchmark"
+harness = false
+
+[profile.release]
+lto = true
+codegen-units = 1
+panic = "abort"
+
+[profile.dev]
+debug = true
+opt-level = 0
+
+[profile.bench]
+debug = true
