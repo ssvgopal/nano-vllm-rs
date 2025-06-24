@@ -2,6 +2,10 @@
 //! 
 //! This module implements the main LLM engine that orchestrates the entire
 //! inference pipeline, providing a clean API for text generation.
+//!
+//! # Author
+//! 
+//! Sai Sunkara <https://github.com/ssvgopal>
 
 use std::sync::Arc;
 use tokio::sync::Mutex;

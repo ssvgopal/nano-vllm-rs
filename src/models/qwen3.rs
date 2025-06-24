@@ -3,6 +3,10 @@
 //! This module implements the complete Qwen3 transformer architecture
 //! with all optimizations including Flash Attention, tensor parallelism,
 //! and prefix caching support.
+//!
+//! # Author
+//! 
+//! Sai Sunkara <https://github.com/ssvgopal>
 
 use candle_core::{Tensor, Device, DType, Result as CandleResult};
 use candle_nn::{VarBuilder, VarMap};

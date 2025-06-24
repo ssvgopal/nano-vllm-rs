@@ -2,6 +2,10 @@
 //! 
 //! This module handles all configuration parameters for the LLM engine,
 //! including model paths, memory settings, and performance tuning options.
+//!
+//! # Author
+//! 
+//! Sai Sunkara <https://github.com/ssvgopal>
 
 use serde::{Deserialize, Serialize};
 use std::path::PathBuf;

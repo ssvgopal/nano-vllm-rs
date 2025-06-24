@@ -2,6 +2,10 @@
 //! 
 //! A lightweight, high-performance vLLM implementation built from scratch in Rust.
 //! 
+//! ## Author
+//! 
+//! Sai Sunkara <https://github.com/ssvgopal>
+//! 
 //! ## Features
 //! 
 //! - 🚀 **Fast offline inference** - Comparable speeds to vLLM
