@@ -9,6 +9,8 @@
 [![Documentation](https://docs.rs/nano-vllm-rs/badge.svg)](https://docs.rs/nano-vllm-rs)
 
 > **Lightning-fast LLM inference engine built from scratch in Rust**
+>
+> Created and maintained by [Sai Sunkara]
 
 A complete vLLM implementation featuring prefix caching, tensor parallelism, Flash Attention, and memory-safe execution with comparable performance to the original Python implementation.
 

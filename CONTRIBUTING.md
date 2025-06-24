@@ -1,6 +1,6 @@
 # Contributing to Nano-vLLM-RS
 
-Thank you for your interest in contributing to Nano-vLLM-RS! We appreciate your time and effort in helping us improve this project.
+Thank you for your interest in contributing to Nano-vLLM-RS! This project is maintained by [Sai Sunkara](https://github.com/ssvgopal). We appreciate your time and effort in helping us improve this project.
 
 ## Table of Contents
 
