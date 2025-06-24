@@ -1,10 +1,12 @@
 //! # Nano-vLLM Rust
 //! 
-//! A lightweight, high-performance vLLM implementation built from scratch in Rust.
+//! A lightweight, high-performance vLLM implementation in Rust.
 //! 
-//! ## Author
+//! ## Authors
 //! 
-//! Sai Sunkara <https://github.com/ssvgopal>
+//! - Sai Sunkara <https://github.com/ssvgopal>
+//! - Rust implementation based on the original [nano-vllm](https://github.com/GeeeekExplorer/nano-vllm)
+//!   by [GeeeekExplorer]
 //! 
 //! ## Features
 //! 

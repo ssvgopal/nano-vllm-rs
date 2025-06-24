@@ -3,7 +3,7 @@ name = "nano-vllm-rs"
 version = "0.1.0"
 edition = "2021"
 authors = ["Sai Sunkara"]
-description = "A lightweight vLLM implementation in Rust"
+description = "A lightweight vLLM implementation in Rust, based on the original nano-vllm by GeeeekExplorer"
 license = "MIT"
 repository = "https://github.com/ssvgopal/nano-vllm-rs"
 
